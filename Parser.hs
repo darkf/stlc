@@ -16,7 +16,7 @@ term :: Term = '(' expr ')' { $1 }
              / integer { Const $1 }
 
 expr :: Term = expr space* term { App $1 $3 }
-             / '\\' identifier '.' expr { Abs $1 BottomTy $2 }
+             / '\\' identifier '.' space* expr space* { Abs $1 BottomTy $3 }
              / term
 
 identifier ::: String
