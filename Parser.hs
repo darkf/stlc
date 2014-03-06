@@ -2,14 +2,14 @@
 
 module Parser where
 import Data.Maybe (fromMaybe)
-import Text.Peggy -- hiding (space)
+import Text.Peggy hiding (space)
 import Term
 
 [peggy|
-top :: Term = expr !.
+top :: Term = space* expr space* !. { $2 }
 
---lineComment :: () = '--' (!'\n' .)* '\n' { () }
---space :: () = [ \r\n\t] { () } / lineComment
+lineComment :: () = '--' (!'\n' .)* '\n' { () }
+space :: () = [ \r\n\t] { () } / lineComment
 
 term :: Term = '(' expr ')' { $1 }
              / identifier { Var $1 }

@@ -22,7 +22,7 @@ eval :: [(String, Term)] -> Term -> Term
 eval _ (Const x) = Const x
 eval _ x@Abs{} = x
 eval e (Var x) = Const (let Const v = fromJust (lookup x e) in v)
-eval e (App (Abs arg _ t) x) = substitute arg x t
+eval e (App (Abs arg _ t) x) = eval e (substitute arg x t)
 eval e (App t x) = eval e (App (eval e t) x)
 
 fromLeft (Right x) = x
