@@ -15,7 +15,7 @@ typeof e (App t arg) =
 substitute :: String -> Term -> Term -> Term
 substitute v x (Var v') | v' == v = x
 substitute v x (Abs arg ty t) = Abs arg ty (substitute v x t)
-substitute v x (App t arg) = App (substitute v x t) arg
+substitute v x (App t arg) = App (substitute v x t) (substitute v x arg)
 substitute _ _ t = t
 
 eval :: [(String, Term)] -> Term -> Term
