@@ -1,0 +1,8 @@
+-- the S combinator
+(\S.
+	-- define K
+	(\K.
+		-- S K x is functionally equivalent to I
+		S K 123 42
+	) (\o.\p. o)
+) (\f.\g.\x. f x (g x))

@@ -1,0 +1,4 @@
+-- the K (const) combinator
+(\K.
+	(K 42) 123
+) (\x.\y. x)
